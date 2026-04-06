@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telegram Image Hosting</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a href="/">Upload</a>
+    <a href="/docs">Docs</a>
+    <a href="/about">About</a>
+    <a href="/admin">Admin</a>
+  </nav>
+
+  <main class="container">
+    <section id="upload-view" class="card">
+      <h1>Telegram Image Hosting</h1>
+      <p>Upload and share images/videos (max 5MB).</p>
+      <input id="file-input" type="file" multiple accept="image/*,video/*" />
+      <button id="upload-btn">Upload</button>
+      <div id="upload-result"></div>
+    </section>
+
+    <section id="admin-view" class="card hidden">
+      <h2>Admin dashboard</h2>
+      <div class="grid2">
+        <div>
+          <h3>Login</h3>
+          <input id="admin-user" placeholder="Username" value="admin" />
+          <input id="admin-pass" placeholder="Password" type="password" />
+          <button id="login-btn">Login</button>
+        </div>
+        <div>
+          <h3>API keys</h3>
+          <input id="new-key-label" placeholder="Label" />
+          <button id="new-key-btn">Create key</button>
+          <ul id="keys-list"></ul>
+        </div>
+      </div>
+      <h3>Usage stats</h3>
+      <pre id="stats-box">[]</pre>
+    </section>
+
+    <section id="docs-view" class="card hidden">
+      <h2>API Documentation</h2>
+      <p><strong>POST</strong> <code>/api/upload</code> (multipart/form-data with <code>file</code>).</p>
+      <p><strong>Headers:</strong> optional <code>X-API-Key</code>.</p>
+      <pre>curl -X POST https://your-domain.com/api/upload -H "X-API-Key: your-api-key" -F "file=@image.jpg"</pre>
+    </section>
+
+    <section id="about-view" class="card hidden">
+      <h2>About</h2>
+      <p>PHP + HTML + CSS + JS + MariaDB implementation compatible with original API routes.</p>
+    </section>
+
+    <section id="preview-view" class="card hidden">
+      <h2 id="preview-name">Preview</h2>
+      <div id="preview-media"></div>
+      <a id="preview-direct" target="_blank">Open raw file</a>
+    </section>
+  </main>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>

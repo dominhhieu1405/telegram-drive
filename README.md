@@ -153,3 +153,34 @@ MIT License. See [`LICENSE`](LICENSE) for details.
 Inspired by the community project [cf-pages/Telegraph-Image](https://github.com/cf-pages/Telegraph-Image), which paved the way for using Telegram as edge-friendly storage.
 
 Developed by [Tas33n](https://github.com/tas33n).
+
+## PHP + MariaDB runtime (new)
+
+This repository now includes a PHP runtime under `php/` that preserves the same public routes and API contracts:
+
+- Front controller: `php/public/index.php`
+- Static UI: `php/public/index.html`, `php/public/assets/*`
+- MariaDB schema: `php/schema.sql`
+
+### Run PHP version locally
+
+```bash
+# 1) create database + tables
+mysql -u root -p telegram_drive < php/schema.sql
+
+# 2) configure env vars
+export DB_HOST=127.0.0.1
+export DB_PORT=3306
+export DB_NAME=telegram_drive
+export DB_USER=root
+export DB_PASS=secret
+export TG_BOT_TOKEN=123456:abc
+export TG_CHAT_ID=-1001234567890
+export ADMIN_USERNAME=admin
+export ADMIN_PASSWORD=super-secure-password
+
+# 3) run built-in server
+php -S 127.0.0.1:8080 -t php/public php/public/index.php
+```
+
+Open `http://127.0.0.1:8080`.
